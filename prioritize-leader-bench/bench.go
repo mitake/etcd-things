@@ -19,7 +19,7 @@ func main() {
 	}
 
 	cfg := client.Config{
-		Endpoints: []string{"http://127.0.0.1:12379", "http://127.0.0.1:22379", "http://127.0.0.1:32379"},
+		Endpoints: []string{"http://172.31.41.106:12379", "http://172.31.41.103:12379", "http://172.31.41.104:12379"},
 		Transport: client.DefaultTransport,
 		// set timeout per request to fail fast when the target endpoint is unavailable
 		HeaderTimeoutPerRequest: time.Second,
@@ -32,7 +32,7 @@ func main() {
 
 	kapi := client.NewKeysAPI(c)
 
-	for i := 0; i < 1000; i++ {
+	for i := 0; i < 10000; i++ {
 		k := fmt.Sprintf("/foo%d", i)
 		_, err := kapi.Set(context.Background(), k, "bar", nil)
 		if err != nil {

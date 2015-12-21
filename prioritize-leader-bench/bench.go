@@ -18,12 +18,17 @@ func main() {
 		os.Exit(1)
 	}
 
+	mode := client.EndpointSelectionDefault
+	if prioritize {
+		mode = client.EndpointSelectionPrioritizeLeader
+	}
+
 	cfg := client.Config{
 		Endpoints: []string{"http://172.31.41.106:12379", "http://172.31.41.103:12379", "http://172.31.41.104:12379"},
 		Transport: client.DefaultTransport,
 		// set timeout per request to fail fast when the target endpoint is unavailable
 		HeaderTimeoutPerRequest: time.Second,
-		PrioritizeLeader:        prioritize,
+		SelectionMode:   mode,
 	}
 	c, err := client.New(cfg)
 	if err != nil {

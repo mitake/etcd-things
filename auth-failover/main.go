@@ -1,12 +1,12 @@
 package main
 
 import (
+	"context"
 	"fmt"
-	"golang.org/x/net/context"
 	"os"
 	"time"
 
-	"github.com/coreos/etcd/clientv3"
+	"etcd.io/etcd/client/v3"
 )
 
 func main() {
